@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>연락처 | UJU Softlab</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-800">
+
+  <!-- Header -->
+  <header class="bg-blue-900 text-white p-6">
+    <div class="max-w-5xl mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold">(주)우주소프트랩</h1>
+      <nav class="space-x-4">
+        <a href="index.html" class="hover:underline">홈</a>
+        <a href="about.html" class="hover:underline">회사 소개</a>
+        <a href="contact.html" class="underline">연락처</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="max-w-4xl mx-auto p-8">
+    
+    <section class="bg-gray-50 py-16 px-4" id="contact">
+      <div class="max-w-xl mx-auto">
+        <h2 class="text-2xl font-bold text-center mb-8">📩 문의하기</h2>
+        <form id="contact-form" class="space-y-6">
+          <div>
+            <label class="block text-sm font-medium text-gray-700">이름</label>
+            <input type="text" name="user_name" required class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-blue-400" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">이메일</label>
+            <input type="email" name="email" required class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-blue-400" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">문의 내용</label>
+            <textarea name="message" rows="5" required class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-blue-400"></textarea>
+          </div>
+          <button type="submit" class="w-full bg-blue-700 text-white py-2 rounded hover:bg-blue-800">보내기</button>
+          <p id="result-message" class="text-center text-green-600 mt-4 hidden">✅ 문의가 정상적으로 전송되었습니다!</p>
+        </form>
+      </div>
+    </section>
+
+    </br></br>
+    <h2 class="text-2xl font-bold mb-6">📬 연락처</h2>
+    <p class="mb-4 text-gray-700">궁금한 점이나 협업 문의가 있으시면 언제든지 연락 주세요.</p>
+
+    <div class="space-y-4 text-gray-700">
+      <p><strong>📧 이메일:</strong> <a href="mailto:info@ujusoftlab.com" class="text-blue-600 underline">ujusoftlab@ujusoftlab.com</a></p>
+      <p><strong>📞 전화:</strong> 070-8144-5884 / 010-8216-8014</p>
+      <p><strong>📠 팩스:</strong> 031-624-8844</p>
+      <p><strong>🏢 주소:</strong> 경기도 화성시 떡전골로 96-4, 206,207호 중 오피스밸리 246호 (병점동, 미라클 프라자)</p>
+    </div>
+
+    <div class="mt-10">
+      <iframe class="w-full h-64 border-0 rounded"
+        src="https://maps.google.com/maps?q=경기도 화성시 떡전골로 96-4&output=embed"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    </br></br>
+    
+    <!-- Sub -->
+    <h2 class="text-2xl font-bold mb-6">🎓 수원디랩코딩학원</h2>
+    <p class="mb-4 text-gray-700">학교 및 기업 출강 문의가 있으시면 언제든지 연락 주세요.</p>
+
+    <div class="space-y-4 text-gray-700">
+      <p><strong>📞 전화:</strong> 031-268-5151 / 010-8216-8014</p>
+      <p><strong>🏢 주소:</strong> 경기도 수원시 장안구 정자천로 173번길 11-7 301호</p>
+    </div>
+
+    <div class="mt-10">
+      <iframe class="w-full h-64 border-0 rounded"
+        src="https://maps.google.com/maps?q=경기도 수원시 장안구 정자천로 173번길 11-7&output=embed"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-blue-900 text-white text-center p-4 mt-16">
+    <p>© 2025 UJU Softlab. All rights reserved.</p>
+  </footer>
+
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+      // EmailJS 초기화
+      emailjs.init("dJ9JBx82FvG8ogCxi");  // 🔐 여기에 실제 Public Key 입력
+
+      // 폼 제출 이벤트 리스너
+      document.getElementById("contact-form").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        emailjs.sendForm("service_yaxvarj", "template_pvlzvyg", this)
+          .then(function () {
+            document.getElementById("result-message").textContent = "✅ 문의가 성공적으로 전송되었습니다!";
+            document.getElementById("result-message").classList.remove("hidden");
+            document.getElementById("contact-form").reset();
+          }, function (error) {
+            alert("문의 전송에 실패했습니다. 다시 시도해주세요.");
+            console.error("EmailJS Error:", error);
+          });
+      });
+    });
+  </script>
+
+</body>
+</html>
